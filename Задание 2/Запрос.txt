@@ -1,0 +1,13 @@
+SELECT
+    P.Name AS ProductName,
+    COALESCE(C.Name, 'No Category') AS CategoryName
+FROM
+    Products P
+LEFT JOIN
+    ProductCategory PC ON P.ProductID = PC.ProductID
+LEFT JOIN
+    Categories C ON PC.CategoryID = C.CategoryID;
+
+Мы выбираем имена продуктов из таблицы Products (P) и присоединяем их к таблице ProductCategory (PC) через левое соединение. Это позволяет нам включить продукты даже те, у которых нет категорий.
+Затем мы присоединяем таблицу Categories (C) к таблице ProductCategory (PC) также через левое соединение.
+Мы используем функцию COALESCE для замены значения NULL в столбце имени категории на строку 'No Category', чтобы обеспечить вывод имени продукта даже в случае отсутствия категории.
